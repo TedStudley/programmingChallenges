@@ -1,0 +1,17 @@
+#! /bin/bash
+
+if [ -z $1 ]; then
+  echo "usage: ./compile <problem number>";
+fi;
+
+if [[ ! "$1" =~ ^[0-9]+$ ]]; then
+  echo "Error: \"$1\" is not a valid integer value.";
+else
+  filename=`printf "Problem%03d.cpp" $1`
+  if [ -f $filename ]; then
+    g++ $filename -o built/`printf "Problem%03d" $1`
+  else
+    echo "Error: \"$filename\" does not exist. Either it is not a valid Project"
+    echo "       Euler problem or it has not been completed yet."
+  fi
+fi
